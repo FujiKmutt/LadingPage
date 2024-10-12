@@ -1,0 +1,1577 @@
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Agbalumo&family=Kanit:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900");
+
+* {
+  user-select: none;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #111111;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+}
+
+header {
+  opacity: 0;
+  transform: translateY(-50px);
+  animation: bounceIn 0.5s forwards 0.5s;
+}
+
+.contain-1 {
+  opacity: 0;
+  transform: scale(0.5); /* เริ่มต้นด้วยขนาดเล็ก */
+  animation: zoomIn 1s forwards ease-out; /* 1s คือระยะเวลาทั้งหมดของ animation */
+}
+
+@keyframes bounceIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes zoomIn {
+  to {
+    opacity: 1;
+    transform: scale(1); /* ขยายไปยังขนาดปกติ */
+  }
+}
+
+/* เพิ่มเอฟเฟ็กต์ในการปรากฎเมื่อ div ปรากฎบนหน้าจอ */
+.contain-2.visible,
+.contain-3.visible,
+.contain-4.visible,
+.contain-5.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.8s, transform 0.8s;
+}
+
+/* ให้ div ตั้งต้นมี opacity และ transform เริ่มต้น */
+.contain-2,
+.contain-3,
+.contain-4,
+.contain-5 {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+header,
+.contain-1,
+.ct-text,
+.ct-profile,
+.contain-2,
+.contain-3,
+.contain-4,
+.contain-5,
+.box-project,
+.Card,
+.ct-all,
+.proj-txtx {
+  border: 0px solid red;
+}
+
+/*----------- header -----------*/
+/* nav */
+li,
+a,
+button {
+  font-family: "Kanit", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  text-decoration: none;
+  color: white;
+}
+
+header {
+  z-index: 9999; /* กำหนดให้อยู่ในชั้นสูงสุด */
+  top: 0;
+  display: flex;
+  position: sticky;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 30px 10%;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-right: 30px;
+  padding-left: 30px;
+  background-color: "";
+  transition: background-color 0.4s ease-in-out;
+}
+
+header.scrolled {
+  background-color: #0b0b0b;
+  opacity: 0.98;
+}
+
+.logo {
+  cursor: pointer;
+  margin-right: auto;
+  align-items: center;
+}
+
+.nav_links,
+.dropdown_menu {
+  list-style: none;
+}
+
+.nav_links li {
+  display: inline-block;
+  padding: 0px 20px;
+  position: relative;
+}
+
+.nav_links li a,
+.dropdown_menu li a {
+  transition: all 0.3s ease 0s;
+}
+
+.dropdown_menu li a:hover {
+  color: #03a9f4;
+}
+
+.nav_links li a::before,
+.dropdown_menu li a::before {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: -1px;
+  left: 50%;
+  background-color: #03a9f4;
+  transition: all 0.3s ease 0s;
+}
+
+.nav_links li a:hover {
+  color: #03a9f4;
+}
+
+.nav_links li a:hover::before,
+.nav_links li a.active::before,
+.dropdown_menu li a:hover::before,
+.dropdown_menu li a.active::before {
+  width: 50%;
+  left: 25%;
+}
+
+.no-underline::before {
+  display: none;
+}
+
+.toggle_btn {
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: none;
+}
+
+.cta {
+  font-family: "Agbalumo", sans-serif;
+  padding: 9px 25px;
+  background-color: #262626;
+  margin-left: 20px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+}
+.mc li a:hover {
+  color: white;
+}
+
+.cta:hover {
+  background-color: #03a9f4;
+  scale: 1.05;
+}
+
+.cta:active {
+  scale: 0.95;
+}
+
+.dropdown_menu {
+  display: none;
+  margin-top: 25px;
+  position: absolute;
+  height: 1;
+  right: 2rem;
+  top: 60px;
+  width: 300px;
+  backdrop-filter: blur(15px);
+  background-color: rgba(24, 24, 24, 0.776);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: height 0.3s ease;
+}
+
+.dropdown_menu.open {
+  height: 240px;
+}
+
+.dropdown_menu li {
+  padding: 0.7rem;
+  padding-top: 10px;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+
+.ctb {
+  font-family: "Agbalumo", sans-serif;
+  background-color: #03a9f4;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  border: none;
+  border-radius: 50px;
+  padding: 9px 25px;
+  margin-bottom: 1rem;
+}
+
+.ctb:hover {
+  background-color: #03a9f4;
+  scale: 1.05;
+}
+
+.ctb:active {
+  scale: 0.95;
+}
+
+/*----------- container -----------*/
+/* 1 */
+.contain-1 {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  height: 55rem;
+  padding-bottom: 5rem;
+}
+
+.ct-text {
+  padding: 1rem 5rem;
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  justify-content: center;
+  align-items: center;
+}
+
+.ct-text hr {
+  font-weight: lighter;
+  width: 50%;
+}
+
+.ct-text h1 {
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+  margin-top: 0;
+}
+
+.ct-text p {
+  font-size: 20px;
+  font-family: "Kanit", sans-serif !important;
+  color: white;
+  margin: 1px 1px;
+}
+/* Image Profile */
+.ct-profile {
+  width: 400px;
+  height: 400px;
+  margin-bottom: 20px;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  display: flex;
+  animation: neon 2s infinite alternate;
+  transition: transform 0.5s ease-in-out;
+}
+
+.ct-profile img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+}
+
+@keyframes neon {
+  0% {
+    box-shadow: 0 0 10px 0px #03a9f4, 0 0 20px 5px #03a9f4,
+      0 0 30px 10px #03a9f4;
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    box-shadow: 0 0 10px 5px #03a9f4, 0 0 20px 10px #03a9f4,
+      0 0 30px 15px #03a9f4;
+    transform: translateY(0);
+  }
+}
+
+/* ----------------------- */
+/* 2 */
+.contain-2 {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: flex-start;
+  padding-bottom: 9.5rem;
+  height: 110rem;
+}
+
+.ct-text-2 h2 {
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  line-height: 1.2;
+  margin-top: 3rem;
+}
+
+.ct-text-2 p {
+  font-size: 20px;
+  font-family: "Kanit", sans-serif !important;
+  color: #03a9f4;
+  margin: 1px 1px;
+}
+
+.box-project {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  width: 85rem;
+}
+
+.box-project a,
+a:visited {
+  display: inline-block;
+}
+
+.ct-button {
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: bold;
+  font-family: "Montserrat", sans-serif;
+  color: grey;
+  outline: 2px solid grey;
+  padding: 25px 0;
+  width: 300px;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+  transition: color 1s;
+}
+
+.ct-button:hover {
+  color: #03a9f4;
+}
+
+.ct-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -50px;
+  width: 0;
+  height: 100%;
+  background-color: white;
+  transform: skewX(35deg);
+  z-index: -1;
+  transition: width 1s;
+}
+
+.ct-button:hover::before {
+  width: 150%;
+}
+
+/* เพิ่มสไตล์สำหรับคลาส active */
+.ct-button.active {
+  background-color: #03a9f4;
+  color: white;
+}
+
+.ct-text-2,
+.box-project {
+  position: relative;
+  z-index: 2;
+}
+
+/* -------NO WAY------- */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.proj-item {
+  width: calc(33.33% - 1rem);
+  margin-bottom: 1rem;
+}
+
+.proj-imgbx {
+  position: relative;
+  overflow: hidden;
+}
+
+.proj-imgbx::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.proj-txtx {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  font-size: 1rem; /* ขนาดตั้งต้นของข้อความ */
+  width: 20rem;
+}
+
+.proj-txt h4 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  font-size: 1.5rem; /* ขนาดที่ต้องการใหญ่ขึ้น */
+}
+
+.proj-txt h5 {
+  font-family: "Kanit", sans-serif;
+  font-size: 1.2rem; /* ขนาดที่ต้องการใหญ่ขึ้น */
+}
+
+.proj-imgbx img {
+  width: 100%;
+  height: auto;
+}
+
+.proj-imgbx:hover::before {
+  opacity: 1;
+}
+
+.proj-imgbx:hover .proj-txtx {
+  opacity: 1;
+  transform: translate(-50%, -60%);
+  font-size: 1.2rem; /* ขนาดที่ต้องการใหญ่ขึ้นเมื่อ Hover */
+}
+
+.proj-imgbx a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.proj-imgbx a:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+.tab-pane {
+  display: none;
+}
+
+.tab-pane.show {
+  display: block;
+}
+
+.tab-content {
+  border-radius: 5px;
+  border: 3px dashed white;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+}
+
+/* ----------------------- */
+/* 3 */
+.contain-3 {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: flex-start;
+  padding-bottom: 9rem;
+  height: 53rem;
+}
+
+.ct-text-3 h2 {
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  line-height: 1.2;
+  margin-top: 3rem;
+}
+
+.ct-text-3 p {
+  font-size: 20px;
+  font-family: "Kanit", sans-serif !important;
+  color: #03a9f4;
+  margin: 1px 1px;
+}
+
+/* จัด ct  */
+.ct-all {
+  display: flex;
+}
+
+/* - กล่องของ skill */
+.skill-box {
+  text-align: start;
+  min-width: 200px;
+  width: 100%;
+  order: 1;
+  width: 200px;
+  background-color: white;
+  border-radius: 15px;
+  padding-top: 10px;
+  padding: 20px;
+  margin: 50px;
+  box-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
+}
+
+.skill-box h3 {
+  font-family: "Kanit", sans-serif !important;
+  color: #03a9f4;
+  text-align: center;
+  margin-top: 1px;
+  margin-bottom: 1px;
+}
+
+.skill-box p {
+  font-family: "Kanit", sans-serif !important;
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 1px;
+}
+
+.skill-box .box {
+  width: 100%;
+  margin: 10px 0px;
+}
+
+.box .progress_bar_box {
+  display: flex;
+  align-items: center;
+}
+
+.box .progress_bar_box .progress_bar {
+  width: 100%;
+  height: 10px;
+  background-color: #f2f2f2;
+  border-radius: 100px;
+  overflow: hidden;
+  position: relative;
+}
+
+.box .progress_bar_box .progress_bar .line {
+  position: absolute;
+  width: 0%;
+  height: 100%;
+  background-color: #03a9f4;
+  border-radius: 100px;
+  transition: 0.2s;
+}
+
+.box .progress_bar_box .increasing_percentage {
+  margin-left: 10px;
+  font-size: 15px;
+}
+
+.box .progress_bar_box .total_percentage {
+  display: none;
+}
+
+/* - กล่องของ Tools */
+/* 1 */
+.tools1-box {
+  text-align: start;
+  min-width: 200px;
+  width: 100%;
+  order: 1;
+  width: 200px;
+  background-color: white;
+  border-radius: 15px;
+  padding-top: 10px;
+  padding: 20px;
+  margin: 50px;
+  box-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
+}
+
+.tools1-box h3 {
+  font-family: "Kanit", sans-serif !important;
+  color: #03a9f4;
+  text-align: center;
+  margin-top: 1px;
+  margin-bottom: 1px;
+}
+
+/* 2 */
+/* - กล่องของ Tools */
+.tools2-box {
+  display: none;
+  text-align: start;
+  min-width: 200px;
+  width: 100%;
+  order: 1;
+  width: 200px;
+  background-color: white;
+  border-radius: 15px;
+  padding-top: 10px;
+  padding: 20px;
+  margin: 50px;
+  box-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
+}
+
+.tools2-box h3 {
+  font-family: "Kanit", sans-serif !important;
+  color: #03a9f4;
+  text-align: center;
+  margin-top: 1px;
+  margin-bottom: 1px;
+}
+
+/* - กล่องของ Love */
+.love-box {
+  align-items: center;
+  text-align: center;
+  text-align: start;
+  min-width: 220px;
+  width: 100%;
+  order: 1;
+  width: 460px;
+  background-color: white;
+  border-radius: 15px;
+  padding-top: 10px;
+  padding: 20px;
+  margin: 50px;
+  box-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
+}
+
+.love-box h3 {
+  font-family: "Kanit", sans-serif !important;
+  color: #03a9f4;
+  text-align: center;
+  margin-top: 1px;
+  margin-bottom: 1px;
+}
+
+.love-box img {
+  width: auto;
+  height: 15rem;
+}
+
+.love-box p {
+  font-family: "Kanit", sans-serif !important;
+  color: black;
+}
+
+.love-box h4 {
+  font-family: "Kanit", sans-serif !important;
+  color: #03a9f4;
+  font-weight: bolder;
+}
+
+.love-box hr {
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.box-flex {
+  display: flex;
+}
+
+.user-box {
+  height: auto;
+  width: 180px;
+  margin: 1rem;
+}
+
+/* ----------------------- */
+/* 4 */
+.contain-4 {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: flex-start;
+  padding-bottom: 9rem;
+  height: 53rem;
+}
+
+.ct-text-4 h2 {
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  line-height: 1.2;
+  margin-top: 3rem;
+}
+
+.ct-text-4 p {
+  font-size: 20px;
+  font-family: "Kanit", sans-serif !important;
+  color: #03a9f4;
+  margin: 1px 1px;
+}
+
+.ct-text-4 hr {
+  margin-bottom: 4rem;
+}
+
+.box-contact {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  border: 3px dashed white;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.Card {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  padding: 5rem;
+}
+
+.Card a {
+  font-family: "Kanit", sans-serif !important;
+  text-decoration: none;
+  color: inherit;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  height: auto;
+  width: 10rem;
+  margin: 15px 15px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
+  background-color: white;
+  flex-basis: calc(16% - 20px);
+}
+
+.Card {
+  color: black;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  padding: 1rem;
+  margin: 15px 15px;
+  flex-wrap: wrap;
+}
+
+.Card h2 {
+  margin-top: 10px;
+  font-size: 24px;
+}
+
+.Card p {
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+.Card img {
+  max-width: 100%;
+  max-height: 100%;
+  width: 100px;
+  height: 100px;
+}
+
+.Card a:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 30px rgba(0, 123, 255, 0.7);
+  animation: wave 2s infinite;
+}
+
+@keyframes wave {
+  0% {
+    background-color: #03a9f4;
+  }
+  50% {
+    background-color: #0056b3;
+  }
+  100% {
+    background-color: #03a9f4;
+  }
+}
+/* ----------------------- */
+/* 5 */
+.contain-5 {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 10rem;
+  height: 10rem;
+}
+
+.ct-text-5 h2 {
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  line-height: 1.2;
+  margin-top: 10rem;
+  font-size: 1rem;
+}
+
+.ct-text-5 p {
+  font-size: 1rem;
+  font-family: "Kanit", sans-serif !important;
+  color: white;
+  margin: 1px 1px;
+}
+/* all text */
+
+/* ------- Effect ------- */
+/* Scroll Trigger Animation */
+
+/* background effect */
+.effectbg {
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.effectbg li {
+  position: absolute;
+  display: block;
+  list-style: none;
+  width: 20px;
+  height: 20px;
+  background: rgba(127, 127, 127, 0.096);
+  animation: animate 25s linear infinite;
+  bottom: -150px;
+}
+
+.effectbg li:nth-child(1) {
+  left: 25%;
+  width: 80px;
+  height: 80px;
+  animation-delay: 0s;
+}
+
+.effectbg li:nth-child(2) {
+  left: 10%;
+  width: 20px;
+  height: 20px;
+  animation-delay: 2s;
+  animation-duration: 12s;
+}
+
+.effectbg li:nth-child(3) {
+  left: 70%;
+  width: 20px;
+  height: 20px;
+  animation-delay: 4s;
+}
+
+.effectbg li:nth-child(4) {
+  left: 40%;
+  width: 60px;
+  height: 60px;
+  animation-delay: 0s;
+  animation-duration: 18s;
+}
+
+.effectbg li:nth-child(5) {
+  left: 65%;
+  width: 20px;
+  height: 20px;
+  animation-delay: 0s;
+}
+
+.effectbg li:nth-child(6) {
+  left: 75%;
+  width: 110px;
+  height: 110px;
+  animation-delay: 3s;
+}
+
+.effectbg li:nth-child(7) {
+  left: 35%;
+  width: 150px;
+  height: 150px;
+  animation-delay: 7s;
+}
+
+.effectbg li:nth-child(8) {
+  left: 50%;
+  width: 25px;
+  height: 25px;
+  animation-delay: 15s;
+  animation-duration: 45s;
+}
+
+.effectbg li:nth-child(9) {
+  left: 20%;
+  width: 15px;
+  height: 15px;
+  animation-delay: 2s;
+  animation-duration: 35s;
+}
+
+.effectbg li:nth-child(10) {
+  left: 85%;
+  width: 150px;
+  height: 150px;
+  animation-delay: 0s;
+  animation-duration: 11s;
+}
+/* ----------------------- */
+@keyframes animate {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+    border-radius: 0;
+  }
+
+  100% {
+    transform: translateY(-1000px) rotate(720deg);
+    opacity: 0;
+    border-radius: 50%;
+  }
+}
+/* RESPONSIVE DESIGN */
+@media (max-width: 1280px) {
+  .box-project {
+    display: flex;
+    justify-content: space-between;
+    width: 70rem;
+  }
+}
+@media (max-width: 1219px) {
+  .box-project {
+    display: flex;
+    justify-content: space-between;
+    width: 70rem;
+  }
+  .ct-button {
+    width: 300px;
+  }
+  .Card a {
+    font-family: "Kanit", sans-serif !important;
+    text-decoration: none;
+    color: inherit;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    height: auto;
+    width: 10rem;
+    margin: 15px 15px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
+    background-color: white;
+    flex-basis: calc(26% - 20px);
+  }
+  .contain-4 {
+    height: 90rem;
+  }
+}
+
+@media (max-width: 1160px) {
+  .skill-box,
+  .tools1-box,
+  .love-box {
+    margin: 50px;
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+}
+
+@media (max-width: 1124px) {
+  .box-project {
+    display: flex;
+    justify-content: space-between;
+    width: 60rem;
+  }
+  .ct-button {
+    width: 250px;
+  }
+}
+
+@media (max-width: 966px) {
+  .box-project {
+    display: flex;
+    justify-content: space-between;
+    width: 50rem;
+  }
+  .ct-button {
+    width: 200px;
+  }
+  .skill-box,
+  .tools1-box,
+  .love-box {
+    margin: 50px;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+}
+
+@media (max-width: 890px) {
+  .skill-box,
+  .tools1-box,
+  .love-box {
+    margin: 50px;
+    margin-left: 3px;
+    margin-right: 3px;
+  }
+}
+
+@media (max-width: 884px) {
+  .box-project {
+    display: flex;
+    justify-content: space-between;
+    width: 50rem;
+  }
+  .ct-button {
+    width: 200px;
+  }
+  .ct-text-3 {
+    margin-bottom: 30px;
+  }
+  .skill-box,
+  .tools2-box,
+  .love-box {
+    margin: 20px;
+    margin-left: 3px;
+    margin-right: 3px;
+  }
+  .ct-all {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+  .contain-3 {
+    height: 110rem;
+  }
+  .proj-item {
+    width: calc(50% - 1rem);
+    margin-bottom: 1rem;
+  }
+  .skill-box {
+    text-align: start;
+    min-width: 200px;
+    width: 100%;
+    order: 1;
+    width: 460px;
+    background-color: white;
+    border-radius: 15px;
+    padding-top: 10px;
+    padding: 20px;
+    margin: 50px;
+    box-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
+  }
+  .tools1-box {
+    display: none;
+    text-align: start;
+    min-width: 200px;
+    width: 100%;
+    order: 1;
+    width: 460px;
+    background-color: white;
+    border-radius: 15px;
+    padding-top: 10px;
+    padding: 20px;
+    margin: 50px;
+    box-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
+    text-align: center;
+  }
+  .tools2-box {
+    display: block;
+    text-align: start;
+    min-width: 200px;
+    width: 100%;
+    order: 1;
+    width: 460px;
+    background-color: white;
+    border-radius: 15px;
+    padding-top: 10px;
+    padding: 20px;
+    margin: 50px;
+    box-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
+    text-align: center;
+  }
+}
+
+@media (max-width: 846px) {
+  .box-project {
+    display: flex;
+    justify-content: space-between;
+    width: 45rem;
+  }
+  .ct-button {
+    width: 200px;
+  }
+  .Card a {
+    font-family: "Kanit", sans-serif !important;
+    text-decoration: none;
+    color: inherit;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    height: auto;
+    width: 10rem;
+    margin: 15px 15px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
+    background-color: white;
+    flex-basis: calc(36% - 20px);
+  }
+  .contain-4 {
+    height: 105rem;
+  }
+}
+
+@media (max-width: 802px) {
+  .nav_links,
+  .cta {
+    display: none;
+  }
+  header img,
+  .toggle_btn {
+    display: block;
+  }
+  .dropdown_menu {
+    margin-top: 41px;
+  }
+  .ct-profile {
+    width: 300px;
+    height: 300px;
+    margin-bottom: 20px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    display: flex;
+    animation: neon 2s infinite alternate;
+    transition: transform 0.5s ease-in-out;
+  }
+}
+
+@media (max-width: 728px) {
+  .box-project {
+    display: flex;
+    justify-content: space-between;
+    width: 40rem;
+  }
+  .ct-button {
+    width: 150px;
+  }
+}
+
+@media (max-width: 645px) {
+  .ct-profile {
+    width: 300px;
+    height: 300px;
+    margin-bottom: 20px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    display: flex;
+    animation: neon 2s infinite alternate;
+    transition: transform 0.5s ease-in-out;
+  }
+  .box-project {
+    display: flex;
+    justify-content: space-between;
+    width: 35rem;
+  }
+  .ct-button {
+    width: 150px;
+  }
+  .row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 2rem;
+  }
+  .proj-item {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  .contain-2 {
+    height: 255rem;
+  }
+  .Card {
+    display: flex;
+    flex-direction: column;
+  }
+  .Card a {
+    font-family: "Kanit", sans-serif !important;
+    text-decoration: none;
+    color: inherit;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    height: auto;
+    width: 30rem;
+    margin: 15px 15px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
+    background-color: white;
+    flex-basis: calc(36% - 20px);
+  }
+  .contain-4 {
+    height: 185rem;
+  }
+  .box-contact {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    border: 0px dashed white;
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .dropdown_menu {
+    margin-top: 41px;
+    left: 2rem;
+    width: unset;
+  }
+  header.scrolled {
+    background-color: "white";
+    opacity: 0.98;
+  }
+  .box-project {
+    display: flex;
+    justify-content: space-between;
+    width: 30rem;
+  }
+  .ct-button {
+    width: 150px;
+  }
+  .ct-profile {
+    width: 300px;
+    height: 300px;
+    margin-bottom: 20px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    display: flex;
+    animation: neon 2s infinite alternate;
+    transition: transform 0.5s ease-in-out;
+  }
+  .ct-text {
+    padding: 1rem 5rem;
+  }
+  .ct-text p {
+    font-size: 20px;
+  }
+  .Card a {
+    font-family: "Kanit", sans-serif !important;
+    text-decoration: none;
+    color: inherit;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    height: auto;
+    width: 26rem;
+    margin: 15px 1px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
+    background-color: white;
+    flex-basis: calc(36% - 20px);
+  }
+  .ct-all {
+    width: 30rem;
+  }
+  .contain-2 {
+    height: 220rem;
+  }
+}
+
+@media (max-width: 488px) {
+  .box-project {
+    display: flex;
+    flex-direction: column;
+    width: 25rem;
+  }
+  .ct-button {
+    margin: 1rem;
+    width: 300px;
+  }
+  .ct-all {
+    width: 28rem;
+  }
+  .skill-box,
+  .tools2-box,
+  .love-box {
+    width: 26rem;
+  }
+  .contain-2 {
+    height: 200rem;
+  }
+}
+
+@media (max-width: 468px) {
+  .ct-profile {
+    width: 250px;
+    height: 250px;
+    margin-bottom: 20px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    display: flex;
+    animation: neon 2s infinite alternate;
+    transition: transform 0.5s ease-in-out;
+  }
+  .user-box {
+    height: auto;
+    width: 180px;
+    margin: 0.1rem;
+  }
+  .ct-all {
+    width: 23rem;
+  }
+  .skill-box,
+  .tools2-box,
+  .love-box {
+    width: 20rem;
+  }
+  .box-flex {
+    flex-direction: column;
+    display: flex;
+    padding: 1px;
+    justify-content: center;
+    align-items: center;
+  }
+  .Card a {
+    width: 20rem;
+    margin: 15px 1px;
+    flex-basis: calc(36% - 20px);
+  }
+  .contain-3 {
+    height: 135rem;
+  }
+  .skill-box {
+    margin-left: 1px;
+    margin-right: 1px;
+  }
+
+  .tools2-box {
+    margin-left: 1px;
+    margin-right: 1px;
+  }
+  .Card {
+    margin-left: 1px;
+    margin-right: 1px;
+  }
+  .box-contact {
+    margin-left: 1px;
+    margin-right: 1px;
+  }
+  .box-project {
+    width: 21rem;
+  }
+}
+
+@media (max-width: 430px) {
+  .contain-2 {
+    height: 185rem;
+  }
+}
+
+@media (max-width: 371px) {
+  .Card a {
+    width: 18rem;
+    margin: 15px 1px;
+    flex-basis: calc(36% - 20px);
+  }
+  .ct-all {
+    width: 17rem;
+  }
+  .skill-box,
+  .tools1-box,
+  .love-box {
+    width: 12rem;
+  }
+  .tools1-box {
+    display: block;
+  }
+  .tools2-box {
+    display: none;
+  }
+  .box-project {
+    display: flex;
+    flex-direction: column;
+    width: 12rem;
+  }
+  .ct-button {
+    margin: 1rem;
+    width: 200px;
+  }
+}
+
+@media (max-width: 323px) {
+  .ct-profile {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 20px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    display: flex;
+    animation: neon 2s infinite alternate;
+    transition: transform 0.5s ease-in-out;
+  }
+  .box-project {
+    display: flex;
+    flex-direction: column;
+    width: 15rem;
+  }
+  .ct-button {
+    margin: 1rem;
+    width: 200px;
+  }
+  .ct-text {
+    padding: 1rem 3rem;
+  }
+  .ct-text p {
+    font-size: 15px;
+  }
+  .ct-all {
+    width: 16rem;
+  }
+  .skill-box,
+  .tools1-box,
+  .love-box {
+    width: 12rem;
+  }
+  .tools1-box {
+    display: block;
+  }
+  .tools2-box {
+    display: none;
+  }
+  .Card a {
+    width: 15rem;
+    margin: 15px 1px;
+    flex-basis: calc(36% - 20px);
+  }
+}
+
+@media (max-width: 371px) {
+  .Card a {
+    width: 18rem;
+    margin: 15px 1px;
+    flex-basis: calc(36% - 20px);
+  }
+  .ct-all {
+    width: 17rem;
+  }
+  .skill-box,
+  .tools1-box,
+  .love-box {
+    width: 12rem;
+  }
+  .tools1-box {
+    display: block;
+  }
+  .tools2-box {
+    display: none;
+  }
+  .box-project {
+    display: flex;
+    flex-direction: column;
+    width: 12rem;
+  }
+  .ct-button {
+    margin: 1rem;
+    width: 200px;
+  }
+  .contain-2 {
+    height: 150rem;
+  }
+}
+
+@media (max-width: 326px) {
+  .Card a {
+    width: 10rem;
+    margin: 15px 1px;
+    flex-basis: calc(36% - 20px);
+  }
+  .ct-all {
+    width: 9rem;
+  }
+  .skill-box,
+  .tools1-box,
+  .love-box {
+    width: 6rem;
+  }
+  .tools1-box {
+    display: block;
+  }
+  .tools2-box {
+    display: none;
+  }
+  .box-project {
+    display: flex;
+    flex-direction: column;
+    width: 12rem;
+  }
+  .ct-button {
+    margin: 1rem;
+    width: 200px;
+  }
+}
+
+@media (max-width: 230px) {
+  * {
+    display: none;
+  }
+}
